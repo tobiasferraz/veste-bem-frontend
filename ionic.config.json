@@ -1,0 +1,7 @@
+{
+  "name": "veste-bem-app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
