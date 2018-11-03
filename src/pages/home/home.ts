@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HomePage {
     creds:CredenciaisDto = {
-    userName:"",
+      userName:"",
       senha:""
     };
     constructor(public navCtrl: NavController, public menu: MenuController, public auth : AuthService) {
@@ -31,7 +31,9 @@ export class HomePage {
          this.auth.sucessFulLogin(response.headers.get('Authorization'));
          this.navCtrl.setRoot('CategoriasPage');
 
-        })
+        },error=>{
+
+        });
     }
 
   login(){
@@ -42,5 +44,9 @@ export class HomePage {
 
     });
   
+  }
+
+  signup(){
+    this.navCtrl.push('SignupPage');
   }
 }
