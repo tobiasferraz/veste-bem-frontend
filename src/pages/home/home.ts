@@ -10,20 +10,28 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  creds:CredenciaisDto = {
-   userName:"",
-    senha:""
-  };
-  constructor(public navCtrl: NavController, public menu: MenuController, public auth : AuthService) {
+    creds:CredenciaisDto = {
+    userName:"",
+      senha:""
+    };
+    constructor(public navCtrl: NavController, public menu: MenuController, public auth : AuthService) {
 
-  }
-  ionViewWillEnter() { 
-    console.log(this.creds);
-    this.menu.swipeEnable(false);   
-  } 
- 
-  ionViewDidLeave() {   
-      this.menu.swipeEnable(true);   
+    }
+    ionViewWillEnter() { 
+      console.log(this.creds);
+      this.menu.swipeEnable(false);   
+    } 
+  
+    ionViewDidLeave() {   
+        this.menu.swipeEnable(true);   
+      }
+
+    ionViewDidEnter(){
+       this.auth.refresh_token().subscribe(response=>{
+         this.auth.sucessFulLogin(response.headers.get('Authorization'));
+         this.navCtrl.setRoot('CategoriasPage');
+
+        })
     }
 
   login(){
