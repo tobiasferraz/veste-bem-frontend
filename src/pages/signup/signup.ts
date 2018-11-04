@@ -49,7 +49,6 @@ export class SignupPage {
       this.estados = response;
       this.formGroup.controls.estadoId.setValue(this.estados[0].id);
       this.updateCidades();
-      console.log(this.estados[0].id);
     },error=>{
 
     });
@@ -58,7 +57,7 @@ export class SignupPage {
     console.log("Enviou");
   }
   updateCidades(){
-    let estado_id = this.formGroup.value.estadoId;
+    let estado_id = this.formGroup.value.estadoId;  
     this.cidadeService.findAll(estado_id).subscribe(response =>{
       this.cidades = response;
       this.formGroup.controls.cidadeId.setValue(null);
